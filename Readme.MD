@@ -36,8 +36,9 @@ http://m.yes24.com/Goods/Detail/83849117
 
 ***
 <h4>참고 사항<br>
-- 그래들 버젼 다운그레이드 : 예시) gradlew wrapper --gradle-version 4.10.2<br>
+- 그래들 버젼 다운그레이드 : 예시) ./gradlew wrapper --gradle-version 4.10.2<br>
 - lombok 사용시 <span style="color:red">Gradle 버전이 5 이상</span>인 경우 dependencies{} 위치에 <br>
-    ___annotationProcessor("org.projectlombok:lombok")___,
-    ___compileOnly("org.projectlombok:lombok")___ <br>
-  추가필요
+  > annotationProcessor("org.projectlombok:lombok")
+  > compileOnly("org.projectlombok:lombok") <br>
+  추가 필요
+- 
