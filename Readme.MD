@@ -1,5 +1,7 @@
-[스프링 부트와 AWS로 혼자 구현하는 웹 서비스] - 지승구 연습용 Repository<br> 
+Web services implemented alone with spring boots and AWS <br>
+[스프링 부트와 AWS로 혼자 구현하는 웹 서비스] - 지승구 연습용 Repository<br>
 http://m.yes24.com/Goods/Detail/83849117
+
 
 ***
 <h3>[Mac os 단축키]</h4> <p>
