@@ -51,7 +51,8 @@ http://m.yes24.com/Goods/Detail/83849117
    > 1.인메모리 관계형 데이터베이스 <br>
    >  2.별도의 설치가 필요없이 프로젝트 의존성만으로 관리가능 <br>
    > 3.메모리에서 실행되기 때문에 애플리케이션을 재시작할 때마다 초기화된다는 점을 이용하여 테스트 용도로 많이 사용 <br>
-  
+ - compile('org.springframework.boot:spring-boot-starter-mustache')
+    > Mustache 의존성 적용 
 ***
 <h4>참고 사항<br>
 - 그래들 버젼 다운그레이드 : 예시) ./gradlew wrapper --gradle-version 4.10.2<br>
