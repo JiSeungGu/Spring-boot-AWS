@@ -43,6 +43,12 @@ http://m.yes24.com/Goods/Detail/83849117
 **@Id [JPA]**
  - 해당 테이블의 PK 필드 
 ***
+
+**HiddenHttpMethodFilter**
+ - 스프링3.0 부터 지원해주는 Filter
+ - Put del patch 요청인 경우에 _Method로 그 값을 받아와서 컨트롤러에 매핑해주는 필터
+
+
 <h3> [Dependencies] </h3> 
  
  - compile('org.springframework.boot:spring-boot-starter-data-jpa') <br>
