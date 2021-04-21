@@ -85,13 +85,12 @@ HTTP요청 본문을 객첼 변경하거나, 객체를 HTTP 응답 본문으로 
 <h2>오류,에러,설정정보</h2>
 
 <h3> HttpMediaTypeNotAcceptableException </h3>
- - 의 오류는 미디어타입을 처리할 httpConverter가 없다는 의미 
- - httpConverter는 HttpMessageConvertersAutoConfiguration에 의해서 적용이 된다.
- > Json Type을 Convert해주는 class = appingJackson2HttpMessageConverter
- > XML Type을 Convert해주는 class = MappingJackson2XmlHttpMessageConverterConfiguration
+ - 의 오류는 미디어타입을 처리할 httpConverter가 없다는 의미  <br>
+ - httpConverter는 HttpMessageConvertersAutoConfiguration에 의해서 적용이 된다.<br>
+ > Json Type을 Convert해주는 class = appingJackson2HttpMessageConverter<br>
+ > XML Type을 Convert해주는 class = MappingJackson2XmlHttpMessageConverterConfiguration<br>
 
 <h3>XML Type Convert 의존성 주입 </h3>
-<br>
 ```
          <dependency>          
             <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -100,8 +99,29 @@ HTTP요청 본문을 객첼 변경하거나, 객체를 HTTP 응답 본문으로 
         </dependency>
 ```
 
-- spring.mvc.static-path-pattern=/static/** : MVC상단 경로 고정
-***
+**Application.properties 에 경로 추가 방법**
+- 1)spring.mvc.static-path-pattern=/static/** : MVC상단 경로 고정
+- 2)@Configuration 에 코드로 경로 추가 하는 방법
+```
+  //기존 리소스 핸드러는 유지하면서 원하는 리소스 핸들러만 따로 추가할 수 있음
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+  registry.addResourceHandler("/m/**")
+  .addResourceLocations("classpath:/m/")
+  .setCachePeriod(20);
+  }
+```
+
+**버전생략하고 jar사용하는 방법**
+(<scirpt> 소스에 명시 되어있는 버전을 변경하기 위해서 모든 view에 찾아가 일일히 수정 해줄 필요 없이 pom.xml에 정의된 버전으로 따라가도록 하여 모든 버전을 일괄적으로 적용시킬 수 있는 방)
+
+```
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>webjars-locator</artifactId>
+    <version>0.40</version>
+</dependency>
+```
 ***
 
 **HiddenHttpMethodFilter**
