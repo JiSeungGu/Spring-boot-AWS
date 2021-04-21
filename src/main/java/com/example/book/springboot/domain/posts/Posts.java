@@ -14,6 +14,7 @@ public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     //GeneratedValue
     // -> PK의 생성 규칙 표시   GenerationType.IDENTITY 를 사용해야지만 Auto_Increment 설정
     private Long id;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 // Muctache 매핑
-@RequiredArgsConstructor
+@RequiredArgsConstructor // final로 표현된 모든 필드의 빈주입
 @Controller
 public class IndexController {
     private final PostsService postsService;

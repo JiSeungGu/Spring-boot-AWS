@@ -2,18 +2,43 @@ Web services implemented alone with spring boots and AWS <br>
 [스프링 부트와 AWS로 혼자 구현하는 웹 서비스] - 지승구 연습용 Repository<br>
 http://m.yes24.com/Goods/Detail/83849117
 
-
 ***
-<h3>[Mac os 단축키]</h4> <p>
+<h3>[내가 이해하는 Class 역할]</h3><br>
+**[DTO]**  
+- 계층간 데이터 교환을 위한 객체 (VO랑 비슷하지만 다른 개념)
+- DB의 데이터를 Service나 Controller 등으로 보낼 떄 사용하는 객체
+- 로직을 갖고 있지 않은 순수한 데이터 객체이며, getter/setter 메서드만을 갖는다.
+
+**[Entity]**
+- 실제 데이터베이스의 테이블과 1:1로 매핑ㄷ 되는 클래스, DB의 테이블내에 존재하는 컬람만을 속성(필드)으로 가져야한다.
+- Entity는 클래스는 상속을 받거나 구현체여서는 안되며, 테이블내에 존재하지 않는 컬럼을 가져서도 안된다.
+
+**[Entity, DTO 분리 이유]**
+- DBLayer와 View Layer 사이의 역할을 분리 하기 위해서
+- Entity 클래스는 실제 테이블과 매핑되어 변경하게 되면 여러 다른클래스에 영향을 끼치고, DTO클래스는 View와 통신하며 자주 변경되므로 분리 해주어야한다.
+
+**[DTO 와 VO 차이점 ]**
+- VO는 DTO와 동일한 개념이지만 read Only 속성을 갖는다, VO는 특정한 비지니스 값을 담는 객체이고, DTO는 Layer간의 통신 용도로 오고가는 객체를 말한다.
+
+**순서흐름**
+1. Client 가 Request를 보낸다.
+2. Request URL에 알맞은 Controller가 수신한다.
+3. Controller는 넘어온 요청을 처리하기 위해 Service를 호출한다.
+4. Service는 알맞은 정보를 가공하여 Controller 에게 데이터를 넘긴다.
+5. Controller는 Service의 결과물을 Client에게 전달해준다.
+***
+<h3>[Mac os 단축키]</h3> <p>
 패키지 가져오기(import) : [Option + Enter]<br>
 깃 커밋 : [Command + K]<br>
-
+검색 : [command + shift + A] <br>
 ****
 <h3>[Spring Boot Annotation]</h4></p>
 
 **@SpringBootApplication<br>**
 
 - 스프링 부트의 자동 설정, 스프링Bean읽기와 생성을 모두 자동으로 설정<br>
+- 특히나 @SpringBoot Application이 있는 위치부터 설정을 읽어 가기 때문에 이 어노테이션이 있는 클래스는<br>
+    프로젝트 최상단에 위치해 있어야 한다.
 
 **@RestController**<br>
 -  컨트롤러를 JSON을 반환하는 컨트롤러로 만들어준다
@@ -41,7 +66,42 @@ http://m.yes24.com/Goods/Detail/83849117
 -- Ex) SalesManager.java -> sales_manager table
 
 **@Id [JPA]**
- - 해당 테이블의 PK 필드 
+ - 해당 테이블의 PK 필드
+***
+**HiddenHttpMethodFilter**
+- 스프링3.0 부터 지원해주는 Filter
+- Put del patch 요청인 경우에 _Method로 그 값을 받아와서 컨트롤러에 매핑해주는 필터
+
+**스프링 부트 MVC 확장**
+- @Configuration + WebMvcConfigurer
+
+**스프링 MVC 재정의**
+- @Configuration + @EnableWebMvc
+
+**HttpMessageConverters**
+HTTP요청 본문을 객첼 변경하거나, 객체를 HTTP 응답 본문으로 변경할 때 사용,
+
+***
+<h2>오류,에러,설정정보</h2>
+
+<h3> HttpMediaTypeNotAcceptableException </h3>
+ - 의 오류는 미디어타입을 처리할 httpConverter가 없다는 의미 
+ - httpConverter는 HttpMessageConvertersAutoConfiguration에 의해서 적용이 된다.
+ > Json Type을 Convert해주는 class = appingJackson2HttpMessageConverter
+ > XML Type을 Convert해주는 class = MappingJackson2XmlHttpMessageConverterConfiguration
+
+<h3>XML Type Convert 의존성 주입 </h3>
+<br>
+```
+         <dependency>          
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.6</version>
+        </dependency>
+```
+
+- spring.mvc.static-path-pattern=/static/** : MVC상단 경로 고정
+***
 ***
 <h3> [Dependencies] </h3> 
  
