@@ -103,6 +103,12 @@ HTTP요청 본문을 객첼 변경하거나, 객체를 HTTP 응답 본문으로 
 - spring.mvc.static-path-pattern=/static/** : MVC상단 경로 고정
 ***
 ***
+
+**HiddenHttpMethodFilter**
+ - 스프링3.0 부터 지원해주는 Filter
+ - Put del patch 요청인 경우에 _Method로 그 값을 받아와서 컨트롤러에 매핑해주는 필터
+
+
 <h3> [Dependencies] </h3> 
  
  - compile('org.springframework.boot:spring-boot-starter-data-jpa') <br>
