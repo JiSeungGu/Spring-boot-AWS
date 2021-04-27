@@ -92,12 +92,14 @@ HTTP요청 본문을 객첼 변경하거나, 객체를 HTTP 응답 본문으로 
 
 <h3>XML Type Convert 의존성 주입 </h3>
 ```
-         <dependency>          
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.9.6</version>
-        </dependency>
+<dependency>          
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+    <version>2.9.6</version>
+</dependency>
 ```
+
+
 
 **Application.properties 에 경로 추가 방법**
 - 1)spring.mvc.static-path-pattern=/static/** : MVC상단 경로 고정

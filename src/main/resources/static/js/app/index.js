@@ -13,6 +13,9 @@ var main = {
         $('#btn-delete').on('click',function(){
            _this.delete();
         });
+        $('#comment-btn-save').on('click',function(){
+            _this.commentSave();
+        })
     },
     save : function() {
         var data = {
@@ -69,6 +72,27 @@ var main = {
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
-    }
+    },
+    commentSave : function() {
+        var data = {
+            com_writer: $('#writer').val(),
+            com_content: $('#comment_msg').val(),
+            com_post_id : $('#id').val()
+        };
+        console.log("아이디야~ : "+data.com_post_id)
+    $.ajax({
+        type : 'POST',
+        url: '/api/v1/commentSave',
+        dataType : 'json',
+        contentType :'application/json; charset=utf-8',
+        data : JSON.stringify(data)
+    }).done(function() {
+        alert('댓글이 등록되었습니다.')
+        // 댓글이 등록되면 메인 페이지로 이동
+        window.location.href='/';
+    }).fail(function (error) {
+        alert(JSON.stringify(error));
+    })
+}
 };
 main.init();
